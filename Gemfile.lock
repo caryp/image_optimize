@@ -1,0 +1,48 @@
+PATH
+  remote: .
+  specs:
+    image_optimize (1.0.0)
+      mime-types (= 2.0)
+      right_api_client (= 1.5.15)
+      trollop (= 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.0)
+    diff-lcs (1.2.5)
+    json (1.8.1)
+    method_source (0.8.2)
+    mime-types (2.0)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    rake (10.3.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    right_api_client (1.5.15)
+      json
+      rest-client (~> 1.6)
+    right_api_provision (0.2.1)
+      right_api_client (= 1.5.15)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.8)
+    rspec-expectations (2.14.5)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.6)
+    slop (3.5.0)
+    trollop (2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  image_optimize!
+  pry
+  rake
+  right_api_provision
+  rspec (~> 2.14)
