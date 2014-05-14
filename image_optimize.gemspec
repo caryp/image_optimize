@@ -11,7 +11,7 @@ gem = Gem::Specification.new do |gem|
   gem.summary       = %q{Bundle a running server into a new image that will be used on next launch}
   gem.homepage      = ''
 
-  gem.files         = `git ls-files`.split($/).delete("")
+  gem.files         = `git ls-files -z`.split("\x0")
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
