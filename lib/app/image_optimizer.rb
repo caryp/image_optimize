@@ -107,7 +107,7 @@ module ImageOptimize
     end
 
     def parse_args
-      version = File.open("VERSION", "r") { |f| f.read }
+      version = File.open(File.join(File.dirname(__FILE__), "..", "..","VERSION"), "r") { |f| f.read }
 
       @args = Trollop::options do
         version "image_optimize #{version} (c) 2014 RightScale, Inc."
