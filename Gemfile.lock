@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    image_optimize (1.0.0)
+    image_optimize (1.0.1)
       mime-types (= 2.0)
       right_api_client (= 1.5.15)
       trollop (= 2.0)
