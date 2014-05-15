@@ -44,22 +44,26 @@ source /etc/profile
 # fixes intermediate "SSL certificate problem" errors from curl
 # See https://forums.aws.amazon.com/thread.jspa?messageID=341463&#341463
 #
-update-ca-certificates
+# update-ca-certificates
+
+
+# install require packages
+apt-get install unzip default-jre
 
 
 # install right_api_client gem (if not installed) into RightLink Sandbox
 #
 sandbox_bin=/opt/rightscale/sandbox/bin
 gem_bin=$sandbox_bin/gem
-if ! $gem_bin list right_api_client --installed ; then
-  echo "Installing right_api_client gem..."
-  $gem_bin install right_api_client --no-rdoc --no-ri
+if ! $gem_bin list image_optimize --installed ; then
+  echo "Installing image_optimize gem..."
+  $gem_bin install $ATTACH_DIR/image_optimize-*.gem --no-rdoc --no-ri
 fi
 
-if ! $gem_bin list trollop --installed ; then
-  echo "Installing trollop gem..."
-  $gem_bin install trollop --no-rdoc --no-ri
-fi
+# configure Java (needed by ec2 tools)
+#
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+
 
 # install EC2 tools
 #
@@ -90,14 +94,6 @@ export PATH=$tools_dir/ec2-api-tools-1.6.13.0/bin:${PATH}
 export EC2_AMITOOL_HOME=$tools_dir/ec2-ami-tools-1.5.0.0
 export PATH=$tools_dir/ec2-ami-tools-1.5.0.0/bin:${PATH}
 
-# unpack attached tarred gem
-#
-if [ -d "$ATTACH_DIR" ]; then
-  echo "Unpacking attached tarred gem..."
-  cd $ATTACH_DIR
-  tar xvf image_optimize*.tar
-  chmod +x bin/image_optimize
-fi
 
 # setup S3 bundle creds (unless EBS)
 #
@@ -175,7 +171,8 @@ fi
 # run optimizer
 #
 echo "Running image_optimize utility..."
-cmd="$sandbox_bin/ruby bin/image_optimize $opts"
+#cmd="$sandbox_bin/ruby bin/image_optimize $opts"
+cmd="image_optimize $opts"
 echo "COMMAND: $cmd"
 eval $cmd
 
